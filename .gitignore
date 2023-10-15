@@ -1,5 +1,47 @@
-# Object file
-*.o
 
-# Ada Library Information
-*.ali
+    }
+
+
+    nomer_str = str(nomer)
+    length = len(nomer_str)
+
+    if length == 1:
+        return a[nomer]
+    elif length == 2 and nomer>=20:
+        return b[int(nomer_str[0])] + ' ' + a[int(nomer_str[1])]
+    elif length == 2 and nomer<=19:
+        return a[nomer]
+    elif length == 3:
+        return c[int(nomer_str[0])] + ' ' + get_nomer_word(int(nomer_str[1:]))
+    elif length <= 4:
+        return d[int(nomer_str[0])] + ' ' + get_nomer_word(int(nomer_str[1:]))
+    else:
+        return e[int(nomer_str[0])] + ' ' + get_nomer_word(int(nomer_str[1:]))
+
+
+def get_rubles_end(nomer):
+    last_digit = nomer % 10
+    if last_digit == 1 and nomer != 11:
+        return 'рубль'
+    elif last_digit in [2, 3, 4] and (nomer < 10 or nomer > 20):
+        return 'рубля'
+    else:
+        return 'рублей'
+
+
+def main():
+    nomer = int(input('Введите число от 1 до 100000: '))
+    if nomer>99999 and nomer<100001:
+        print("сто тысяч рублей")
+    if nomer < 1 or nomer > 100000:
+        print('Недопустимое значение')
+        return
+
+
+    nomer_word = get_nomer(nomer)
+    rubles_end = get_rubles_end(nomer)
+    print(nomer_word + ' ' + rubles_end)
+
+
+if __name__ == '__main__':
+    main()
